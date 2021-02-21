@@ -1,0 +1,374 @@
+2021-02-20 07:43:31.909 | INFO     | __main__:serve:48 - 启动服务：127.0.0.1：50051
+2021-02-20 07:44:02.322 | ERROR    | grpc._server:_call_behavior:435 - An error has been caught in function '_call_behavior', process 'MainProcess' (8292), thread 'ThreadPoolExecutor-0_0' (10584):
+Traceback (most recent call last):
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\pymysql\connections.py", line 613, in connect
+    sock = socket.create_connection(
+           │      └ <function create_connection at 0x000001F9CE359B80>
+           └ <module 'socket' from 'f:\\programfile\\python38\\lib\\socket.py'>
+
+  File "f:\programfile\python38\lib\socket.py", line 808, in create_connection
+    raise err
+          └ None
+
+  File "f:\programfile\python38\lib\socket.py", line 796, in create_connection
+    sock.connect(sa)
+    │    │       └ ('192.168.220.30', 3306)
+    │    └ <method 'connect' of '_socket.socket' objects>
+    └ <socket.socket [closed] fd=-1, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0>
+
+socket.timeout: timed out
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 3065, in connect
+    self._state.set_connection(self._connect())
+    │    │      │              │    └ <function PooledDatabase._connect at 0x000001F9CF0A71F0>
+    │    │      │              └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+    │    │      └ <function _ConnectionState.set_connection at 0x000001F9CF09A790>
+    │    └ <peewee._ConnectionLocal object at 0x000001F9CF0DE3A0>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\playhouse\pool.py", line 156, in _connect
+    conn = super(PooledDatabase, self)._connect()
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+                 └ <class 'playhouse.pool.PooledDatabase'>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 3965, in _connect
+    conn = mysql.connect(db=self.database, **self.connect_params)
+           │     │          │    │           │    └ {'charset': 'utf8', 'sql_mode': 'PIPES_AS_CONCAT', 'use_unicode': True, 'host': '192.168.220.30', 'port': 3306, 'user': 'root...
+           │     │          │    │           └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+           │     │          │    └ 'mxshop_user_srv'
+           │     │          └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+           │     └ <class 'pymysql.connections.Connection'>
+           └ <module 'pymysql' from "C:\\Users\\pt's pc\\Envs\\mxshop_srv\\lib\\site-packages\\pymysql\\__init__.py">
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\pymysql\connections.py", line 353, in __init__
+    self.connect()
+    │    └ <function Connection.connect at 0x000001F9CF068820>
+    └ <pymysql.connections.Connection object at 0x000001F9CF251190>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\pymysql\connections.py", line 664, in connect
+    raise exc
+          └ OperationalError(2003, "Can't connect to MySQL server on '192.168.220.30' (timed out)")
+
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on '192.168.220.30' (timed out)")
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 3127, in execute_sql
+    cursor = self.cursor(commit)
+             │    │      └ True
+             │    └ <function Database.cursor at 0x000001F9CF09D310>
+             └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 3111, in cursor
+    self.connect()
+    │    └ <function PooledDatabase.connect at 0x000001F9CF0A7160>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\playhouse\pool.py", line 109, in connect
+    return super(PooledDatabase, self).connect(reuse_if_open)
+                 │               │             └ False
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+                 └ <class 'playhouse.pool.PooledDatabase'>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 3068, in connect
+    self._initialize_connection(self._state.conn)
+    │    │                      │    └ <peewee._ConnectionLocal object at 0x000001F9CF0DE3A0>
+    │    │                      └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+    │    └ <function Database._initialize_connection at 0x000001F9CF09AEE0>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 2902, in __exit__
+    reraise(new_type, new_type(exc_value, *exc_args), traceback)
+    │       │         │        │           │          └ <traceback object at 0x000001F9CF2ADC40>
+    │       │         │        │           └ (2003, "Can't connect to MySQL server on '192.168.220.30' (timed out)")
+    │       │         │        └ OperationalError(2003, "Can't connect to MySQL server on '192.168.220.30' (timed out)")
+    │       │         └ <class 'peewee.OperationalError'>
+    │       └ <class 'peewee.OperationalError'>
+    └ <function reraise at 0x000001F9CF069CA0>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 185, in reraise
+    raise value.with_traceback(tb)
+          │     │              └ <traceback object at 0x000001F9CF2ADC40>
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError(2003, "Can't connect to MySQL server on '192.168.220.30' (timed out)")
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 3065, in connect
+    self._state.set_connection(self._connect())
+    │    │      │              │    └ <function PooledDatabase._connect at 0x000001F9CF0A71F0>
+    │    │      │              └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+    │    │      └ <function _ConnectionState.set_connection at 0x000001F9CF09A790>
+    │    └ <peewee._ConnectionLocal object at 0x000001F9CF0DE3A0>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\playhouse\pool.py", line 156, in _connect
+    conn = super(PooledDatabase, self)._connect()
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+                 └ <class 'playhouse.pool.PooledDatabase'>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 3965, in _connect
+    conn = mysql.connect(db=self.database, **self.connect_params)
+           │     │          │    │           │    └ {'charset': 'utf8', 'sql_mode': 'PIPES_AS_CONCAT', 'use_unicode': True, 'host': '192.168.220.30', 'port': 3306, 'user': 'root...
+           │     │          │    │           └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+           │     │          │    └ 'mxshop_user_srv'
+           │     │          └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+           │     └ <class 'pymysql.connections.Connection'>
+           └ <module 'pymysql' from "C:\\Users\\pt's pc\\Envs\\mxshop_srv\\lib\\site-packages\\pymysql\\__init__.py">
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\pymysql\connections.py", line 353, in __init__
+    self.connect()
+    │    └ <function Connection.connect at 0x000001F9CF068820>
+    └ <pymysql.connections.Connection object at 0x000001F9CF251190>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\pymysql\connections.py", line 664, in connect
+    raise exc
+          └ OperationalError(2003, "Can't connect to MySQL server on '192.168.220.30' (timed out)")
+
+peewee.OperationalError: (2003, "Can't connect to MySQL server on '192.168.220.30' (timed out)")
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "f:\programfile\python38\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000001F9CE2800D0>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 10584)>
+
+  File "f:\programfile\python38\lib\threading.py", line 932, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000001F9CE27EDC0>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 10584)>
+
+  File "f:\programfile\python38\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_0, started daemon 10584)>
+    │    │        │    └ (<weakref at 0x000001F9CF2475E0; to 'ThreadPoolExecutor' at 0x000001F9CF0F3D00>, <_queue.SimpleQueue object at 0x000001F9CF0E...
+    │    │        └ <Thread(ThreadPoolExecutor-0_0, started daemon 10584)>
+    │    └ <function _worker at 0x000001F9CF1083A0>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 10584)>
+
+  File "f:\programfile\python38\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x000001F9CF1084C0>
+    └ <concurrent.futures.thread._WorkItem object at 0x000001F9CF2409D0>
+
+  File "f:\programfile\python38\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x000001F9CF2409D0>
+             │    │   │    └ [<grpc._cython.cygrpc.RequestCallEvent object at 0x000001F9CF2470E0>, <grpc._server._RPCState object at 0x000001F9CF2407C0>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x000001F9CF2409D0>
+             │    └ <function _unary_response_in_pool at 0x000001F9CF12B940>
+             └ <concurrent.futures.thread._WorkItem object at 0x000001F9CF2409D0>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\grpc\_server.py", line 552, in _unary_response_in_pool
+    response, proceed = _call_behavior(rpc_event, state, behavior,
+                        │              │          │      └ <bound method UserServicer.GetUserList of <user_srv.handler.user.UserServicer object at 0x000001F9CF10ACD0>>
+                        │              │          └ <grpc._server._RPCState object at 0x000001F9CF2407C0>
+                        │              └ <grpc._cython.cygrpc.RequestCallEvent object at 0x000001F9CF2470E0>
+                        └ <function _call_behavior at 0x000001F9CF12B550>
+
+> File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\grpc\_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x000001F9CF240E50>
+                           │        └ pn: 2
+                           │          pSize: 2
+                           │          
+                           └ <bound method UserServicer.GetUserList of <user_srv.handler.user.UserServicer object at 0x000001F9CF10ACD0>>
+
+  File "F:\develop\python\mxshop_srvs\user_srv\handler\user.py", line 39, in GetUserList
+    rsp.total = users.count()         # 获取user的数量
+    │   │       │     └ <function SelectBase.count at 0x000001F9CF08B700>
+    │   │       └ <peewee.ModelSelect object at 0x000001F9CF240D60>
+    │   └ <google.protobuf.internal.python_message._FieldProperty object at 0x000001F9CEEDBC70>
+    └
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 1898, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+           │      └ <peewee.ModelSelect object at 0x000001F9CF240D60>
+           └ <function SelectBase.count at 0x000001F9CF08B670>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 2175, in count
+    return Select([clone], [fn.COUNT(SQL('1'))]).scalar(database)
+           │       │        │        │                  └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+           │       │        │        └ <class 'peewee.SQL'>
+           │       │        └ <peewee.Function object at 0x000001F9CF07AA00>
+           │       └ <peewee.ModelSelect object at 0x000001F9CF251070>
+           └ <class 'peewee.Select'>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 1898, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+           │      └ <peewee.Select object at 0x000001F9CF240FA0>
+           └ <function SelectBase.scalar at 0x000001F9CF08B550>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 2160, in scalar
+    row = self.tuples().peek(database)
+          │    │             └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+          │    └ <function Node.copy.<locals>.inner at 0x000001F9CF0875E0>
+          └ <peewee.Select object at 0x000001F9CF240FA0>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 1898, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+           │      └ <peewee.Select object at 0x000001F9CF251160>
+           └ <function SelectBase.peek at 0x000001F9CF08B310>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 2147, in peek
+    rows = self.execute(database)[:n]
+           │    │       │          └ 1
+           │    │       └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+           │    └ <function BaseQuery.execute at 0x000001F9CF087AF0>
+           └ <peewee.Select object at 0x000001F9CF251160>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 1898, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+           │      └ <peewee.Select object at 0x000001F9CF251160>
+           └ <function BaseQuery.execute at 0x000001F9CF087A60>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 1969, in execute
+    return self._execute(database)
+           │    │        └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+           │    └ <function SelectBase._execute at 0x000001F9CF08B280>
+           └ <peewee.Select object at 0x000001F9CF251160>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 2141, in _execute
+    cursor = database.execute(self)
+             │        │       └ <peewee.Select object at 0x000001F9CF251160>
+             │        └ <function Database.execute at 0x000001F9CF09D430>
+             └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 3142, in execute
+    return self.execute_sql(sql, params, commit=commit)
+           │    │           │    │              └ <object object at 0x000001F9CF05F040>
+           │    │           │    └ []
+           │    │           └ 'SELECT COUNT(1) FROM (SELECT 1 FROM `user` AS `t1`) AS `_wrapped`'
+           │    └ <function ReconnectMixin.execute_sql at 0x000001F9CF0FA430>
+           └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\playhouse\shortcuts.py", line 223, in execute_sql
+    raise exc
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\playhouse\shortcuts.py", line 212, in execute_sql
+    return super(ReconnectMixin, self).execute_sql(sql, params, commit)
+                 │               │                 │    │       └ <object object at 0x000001F9CF05F040>
+                 │               │                 │    └ []
+                 │               │                 └ 'SELECT COUNT(1) FROM (SELECT 1 FROM `user` AS `t1`) AS `_wrapped`'
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+                 └ <class 'playhouse.shortcuts.ReconnectMixin'>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 3136, in execute_sql
+    self.commit()
+    │    └ <function Database.commit at 0x000001F9CF09E0D0>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 2902, in __exit__
+    reraise(new_type, new_type(exc_value, *exc_args), traceback)
+    │       │         │        │           │          └ <traceback object at 0x000001F9CF2ADDC0>
+    │       │         │        │           └ (2003, "Can't connect to MySQL server on '192.168.220.30' (timed out)")
+    │       │         │        └ OperationalError(2003, "Can't connect to MySQL server on '192.168.220.30' (timed out)")
+    │       │         └ <class 'peewee.OperationalError'>
+    │       └ <class 'peewee.OperationalError'>
+    └ <function reraise at 0x000001F9CF069CA0>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 185, in reraise
+    raise value.with_traceback(tb)
+          │     │              └ <traceback object at 0x000001F9CF2ADDC0>
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError(2003, "Can't connect to MySQL server on '192.168.220.30' (timed out)")
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 3127, in execute_sql
+    cursor = self.cursor(commit)
+             │    │      └ True
+             │    └ <function Database.cursor at 0x000001F9CF09D310>
+             └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 3111, in cursor
+    self.connect()
+    │    └ <function PooledDatabase.connect at 0x000001F9CF0A7160>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\playhouse\pool.py", line 109, in connect
+    return super(PooledDatabase, self).connect(reuse_if_open)
+                 │               │             └ False
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+                 └ <class 'playhouse.pool.PooledDatabase'>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 3068, in connect
+    self._initialize_connection(self._state.conn)
+    │    │                      │    └ <peewee._ConnectionLocal object at 0x000001F9CF0DE3A0>
+    │    │                      └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+    │    └ <function Database._initialize_connection at 0x000001F9CF09AEE0>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 2902, in __exit__
+    reraise(new_type, new_type(exc_value, *exc_args), traceback)
+    │       │         │        │           │          └ <traceback object at 0x000001F9CF2ADC40>
+    │       │         │        │           └ (2003, "Can't connect to MySQL server on '192.168.220.30' (timed out)")
+    │       │         │        └ OperationalError(2003, "Can't connect to MySQL server on '192.168.220.30' (timed out)")
+    │       │         └ <class 'peewee.OperationalError'>
+    │       └ <class 'peewee.OperationalError'>
+    └ <function reraise at 0x000001F9CF069CA0>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 185, in reraise
+    raise value.with_traceback(tb)
+          │     │              └ <traceback object at 0x000001F9CF2ADC40>
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError(2003, "Can't connect to MySQL server on '192.168.220.30' (timed out)")
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 3065, in connect
+    self._state.set_connection(self._connect())
+    │    │      │              │    └ <function PooledDatabase._connect at 0x000001F9CF0A71F0>
+    │    │      │              └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+    │    │      └ <function _ConnectionState.set_connection at 0x000001F9CF09A790>
+    │    └ <peewee._ConnectionLocal object at 0x000001F9CF0DE3A0>
+    └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\playhouse\pool.py", line 156, in _connect
+    conn = super(PooledDatabase, self)._connect()
+                 │               └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+                 └ <class 'playhouse.pool.PooledDatabase'>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\peewee.py", line 3965, in _connect
+    conn = mysql.connect(db=self.database, **self.connect_params)
+           │     │          │    │           │    └ {'charset': 'utf8', 'sql_mode': 'PIPES_AS_CONCAT', 'use_unicode': True, 'host': '192.168.220.30', 'port': 3306, 'user': 'root...
+           │     │          │    │           └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+           │     │          │    └ 'mxshop_user_srv'
+           │     │          └ <user_srv.settings.settings.ReconnectMysqlDatabase object at 0x000001F9CEF00880>
+           │     └ <class 'pymysql.connections.Connection'>
+           └ <module 'pymysql' from "C:\\Users\\pt's pc\\Envs\\mxshop_srv\\lib\\site-packages\\pymysql\\__init__.py">
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\pymysql\connections.py", line 353, in __init__
+    self.connect()
+    │    └ <function Connection.connect at 0x000001F9CF068820>
+    └ <pymysql.connections.Connection object at 0x000001F9CF251190>
+
+  File "C:\Users\pt's pc\Envs\mxshop_srv\lib\site-packages\pymysql\connections.py", line 664, in connect
+    raise exc
+          └ OperationalError(2003, "Can't connect to MySQL server on '192.168.220.30' (timed out)")
+
+peewee.OperationalError: (2003, "Can't connect to MySQL server on '192.168.220.30' (timed out)")

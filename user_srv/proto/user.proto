@@ -1,0 +1,55 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+option go_package = ".;proto";
+
+//定义User接口
+service User {
+    rpc GetUserList(PageInfo) returns (UserListResponse);   //用户列表
+    rpc GetUserByMobile(MobileRequest) returns (UserInfoResponse);   //通过mobile查询用户
+    rpc GetUserById(IdRequest) returns (UserInfoResponse);   //通过id查询用户
+    rpc CreateUser(CreateUserInfo) returns (UserInfoResponse);   //添加用户
+    rpc UpdateUser(UpdateUserInfo) returns (google.protobuf.Empty);  //UpdateUser不关心返回值，用空代替
+}
+
+//分页信息
+message PageInfo {
+    uint32 pn = 1;     //页码
+    uint32 pSize = 2;   //默认每页获取信息数——2条
+}
+
+message MobileRequest {
+    string mobile = 1;
+}
+
+message IdRequest {
+    int32 id = 1;
+}
+
+message CreateUserInfo {
+    string nickName = 1;
+    string passWord = 2;
+    string mobile = 3;
+}
+
+message UpdateUserInfo {
+    int32 id = 1;  //想要更新用户必须知道用户主键
+    string nickName = 2;
+    string gender = 3;
+    uint64 birthDay = 4;   //protobuf中并没有提供datetime类型（不同语言本质不一样），但能够通过unit类型自动转化为datetime
+
+}
+
+message UserInfoResponse {   //用户信息一般都是全量返回
+    int32 id = 1;
+    string password = 2;
+    string mobile = 3;
+    string nickName = 4;
+    uint64 birthDay = 5;
+    string gender = 6;
+    int32 role = 7;
+}
+
+message UserListResponse {
+    int32 total = 1;
+    repeated UserInfoResponse data = 2;  //返回多个用户信息
+}
