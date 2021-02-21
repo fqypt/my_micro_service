@@ -1,8 +1,5 @@
-import sys
-import logging
-import os
-import signal
 from concurrent import futures
+import logging
 
 import grpc
 from loguru import logger
@@ -31,7 +28,7 @@ def serve():
     # logger.add("logs/user_srv_{time}.log")
     server = grpc.server(futures.ThreadPoolExecutor(max_workers = 10))
     user_pb2_grpc.add_UserServicer_to_server(UserServicer(),server)
-    server.add_insecure_port('0.0.0.0:50051')
+    server.add_insecure_port('[::]:50051')
 
     #主进程退出信号监听
     '''

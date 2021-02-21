@@ -7,7 +7,7 @@ from user_srv.proto import user_pb2_grpc,user_pb2
 
 class UserTest:
     def __init__(self):
-        #连接grpc服务
+        #连接grpc服务器
         channel = grpc.insecure_channel("127.0.0.1:50051")
         '''
         grpc之间是内部服务，所以可以用insecure（不安全服务），
