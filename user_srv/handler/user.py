@@ -1,10 +1,13 @@
 import grpc
 import time
+from loguru import logger
+
 
 from user_srv.proto import user_pb2,user_pb2_grpc
 from user_srv.models.model import User
 
 class UserServicer(user_pb2_grpc.UserServicer):
+    @logger.catch
     def GetUserList(self, request: user_pb2.PageInfo, context):
         #获取用户列表功能
         rsp = user_pb2.UserListResponse()

@@ -1,64 +1,59 @@
+import sys
+import os
+import signal
 from concurrent import futures
 import logging
 
 import grpc
 from loguru import logger
+import argparse
 
-
-#sys.path.insert(0,"F:/develop/python/mxshop_srvs")
-#BASE_DIR = os.path.dirname(__file__)
-#print(BASE_DIR)   #F:/develop/python/mxshop_srvs/user_srv
-
-# BASE_DIR = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
-# sys.path.insert(0,BASE_DIR)
-
-
+BASE_DIR = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
+sys.path.insert(0, BASE_DIR)
 
 from user_srv.proto import user_pb2_grpc
 from user_srv.handler.user import UserServicer
 
-# def on_exit(signo,frame):
-#     logger.info("进程中断")
-#     #退出服务
-#     sys.exit(0)
+
+# 定义退出函数
+def on_exit(signo, frame):
+    logger.info("进程中断")
+    sys.exit(0)
 
 
 def serve():
-    #配置文件输出
-    # logger.add("logs/user_srv_{time}.log")
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers = 10))
-    user_pb2_grpc.add_UserServicer_to_server(UserServicer(),server)
-    server.add_insecure_port('[::]:50051')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--ip',
+                        nargs="?",
+                        type=str,
+                        default="127.0.0.1",
+                        help="binding ip"
+                        )
+    parser.add_argument('--port',
+                        nargs="?",
+                        type=int,
+                        default=50051,
+                        help="the listening port"
+                        )
+    args = parser.parse_args()
 
-    #主进程退出信号监听
-    '''
-        windows下支持的信号量是有限的：
-            SIGINT：ctrl+C中断
-            SIGTERM：程序kill发出的软件终止
-        这里停止不能用pycharm中的停止，是一个强杀命令，无法被监听，
-        需要在terminal中运行
-    '''
-    #运行这两个命令就会产生一个信号，然后就会运行on_exit方法，停止服务
-    # signal.signal(signal.SIGINT,on_exit)
-    # signal.signal(signal.SIGTERM, on_exit)
-    #
-    # logger.info(f"启动服务：127.0.0.1：50051")
-    print(f"启动服务：127.0.0.1：50051")
+
+
+    # 配置文件输出
+    logger.add("logs/user_srv_{time}.log")
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    user_pb2_grpc.add_UserServicer_to_server(UserServicer(), server)
+    server.add_insecure_port(f"{args.ip}:{args.port}")
+
+    # 主进程退出信号监听
+    signal.signal(signal.SIGINT, on_exit)
+    signal.signal(signal.SIGTERM, on_exit)
+
+    logger.info(f"启动服务：{args.ip}:{args.port}")
     server.start()
     server.wait_for_termination()
 
 
-# @logger.catch
-# def my_function(x, y, z):
-#     # An error? It's caught anyway!
-#     return 1 / (x + y + z)
-
 if __name__ == '__main__':
-    # logger.debug("调试信息")
-    # logger.info("普通信息")
-    # logger.warning("警告信息")
-    # logger.error("错误信息")
-    # logger.critical("严重错误信息")
-    # my_function(0,0,0)
     logging.basicConfig()
     serve()

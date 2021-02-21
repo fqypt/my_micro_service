@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user_srv/handler/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/user_srv/handler/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user_srv/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/user_srv/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user_srv/tests（client）/user_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/user_srv/tests（client）/user_test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -185,6 +184,7 @@
       <workItem from="1613774530653" duration="4273000" />
       <workItem from="1613876337471" duration="5894000" />
       <workItem from="1613887343023" duration="3662000" />
+      <workItem from="1613891234538" duration="5807000" />
     </task>
     <servers />
   </component>
@@ -210,7 +210,7 @@
     <SUITE FILE_PATH="coverage/mxshop_srvs$user.coverage" NAME="user Coverage Results" MODIFIED="1613778196793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/user_srv/handler" />
     <SUITE FILE_PATH="coverage/mxshop_srvs$settings.coverage" NAME="settings Coverage Results" MODIFIED="1613704113957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/user_srv/settings" />
     <SUITE FILE_PATH="coverage/mxshop_srvs$model.coverage" NAME="model Coverage Results" MODIFIED="1613881902180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/user_srv/models" />
-    <SUITE FILE_PATH="coverage/mxshop_srvs$server.coverage" NAME="server Coverage Results" MODIFIED="1613890946553" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/user_srv" />
-    <SUITE FILE_PATH="coverage/mxshop_srvs$user_test__1_.coverage" NAME="user_test (1) Coverage Results" MODIFIED="1613890952288" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/user_srv/tests（client）" />
+    <SUITE FILE_PATH="coverage/mxshop_srvs$server.coverage" NAME="server Coverage Results" MODIFIED="1613896575528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/user_srv" />
+    <SUITE FILE_PATH="coverage/mxshop_srvs$user_test__1_.coverage" NAME="user_test (1) Coverage Results" MODIFIED="1613896667810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/user_srv/tests（client）" />
   </component>
 </project>
